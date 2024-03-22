@@ -22,10 +22,10 @@ const ListRow = ({ expense }) => {
   return (
     <div>
       <Row>
-        <Col>{expense.description}</Col>
-        <Col className="d-flex justify-content-center">{expense.amount}</Col>
-        <Col className="d-flex justify-content-end">
-          <Button variant="warning">Edit</Button>
+        <Col xs={5}>{expense.description}</Col>
+        <Col xs={5} className="d-flex">{expense.amount}</Col>
+        <Col xs={2} className="d-flex">
+          <Button style={{ display: 'block', width: '100%' }} variant="warning">Edit</Button>
         </Col>
       </Row>
       <hr />

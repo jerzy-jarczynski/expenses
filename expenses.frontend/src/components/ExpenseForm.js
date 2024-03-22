@@ -26,7 +26,7 @@ export default () => {
       }}
     >
       <Row>
-        <Col>
+        <Col xs={5}>
           <Form.Label>Description</Form.Label>
           <Form.Control
             as="select"
@@ -37,7 +37,7 @@ export default () => {
             ))}
           </Form.Control>
         </Col>
-        <Col>
+        <Col xs={5}>
           <Form.Label>Amount</Form.Label>
           <Form.Control
             type="number"
@@ -46,21 +46,23 @@ export default () => {
             onChange={(event) => setAmount(event.target.value)}
           />
         </Col>
-        <div style={{ marginTop: 'auto' }}>
-          {isNewExpense ? (
-            <Button variant="primary" type="submit">
-              Add
-            </Button>
-          ) : (
-            <div>
-              <Button variant="danger">Delete</Button>
-              <Button variant="success" type="submit">
-                Save
+        <Col xs={2} style={{ display: 'flex', alignItems: 'flex-end' }}>
+          <div style={{ width: '100%' }}>
+            {isNewExpense ? (
+              <Button variant="primary" type="submit" style={{ display: 'block', width: '100%' }}>
+                Add
               </Button>
-              <Button variant="default">Cancel</Button>
-            </div>
-          )}
-        </div>
+            ) : (
+              <div>
+                <Button variant="danger" style={{ display: 'block', width: '100%' }}>Delete</Button>
+                <Button variant="success" type="submit" style={{ display: 'block', width: '100%' }}>
+                  Save
+                </Button>
+                <Button variant="default" style={{ display: 'block', width: '100%' }}>Cancel</Button>
+              </div>
+            )}
+          </div>
+        </Col>
       </Row>
     </Form>
   );
