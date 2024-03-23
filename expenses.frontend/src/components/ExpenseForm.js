@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from 'react';
 import { Form, Row, Col, Button } from 'react-bootstrap';
-import { NewExpense } from '../services/expenses';
+import { NewExpense, EditExpense, DeleteExpense } from '../services/expenses';
 import { useDispatch } from 'react-redux';
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -33,6 +33,11 @@ export default ({ expense, setIsEditing }) => {
         if (isNewExpense) {
           NewExpense(dispatch, { description: description, amount: amount });
         } else {
+          EditExpense(dispatch, {
+            id: expense.id,
+            description: description,
+            amount: amount,
+          });
           setIsEditing(false);
         }
       }}
@@ -72,14 +77,23 @@ export default ({ expense, setIsEditing }) => {
               <div>
                 <Button
                   variant="danger"
-                  style={{ display: 'block', width: '100%' }}
+                  style={{
+                    display: 'block',
+                    width: '100%',
+                    marginBottom: '2px',
+                  }}
+                  onClick={() => DeleteExpense(dispatch, expense)}
                 >
                   Delete
                 </Button>
                 <Button
                   variant="success"
                   type="submit"
-                  style={{ display: 'block', width: '100%' }}
+                  style={{
+                    display: 'block',
+                    width: '100%',
+                    marginBottom: '2px',
+                  }}
                 >
                   Save
                 </Button>

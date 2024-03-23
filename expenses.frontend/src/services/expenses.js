@@ -27,3 +27,21 @@ export const NewExpense = async (dispatch, expense) => {
     console.log('Error!');
   }
 }
+
+export const EditExpense = async (dispatch, expense) => {
+  try {
+    // api call
+    dispatch(ActionCreators.editExpense(expense));
+  } catch {
+    console.log('Error!');
+  }
+}
+
+export const DeleteExpense = async (dispatch, expense) => {
+  try {
+    // api call
+    dispatch(ActionCreators.deleteExpense(expense));
+  } catch {
+    console.log('Error!');
+  }
+}
