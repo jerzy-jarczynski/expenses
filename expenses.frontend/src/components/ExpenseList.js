@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { GetExpenses } from '../services/expenses';
 import { Button, Row, Col } from 'react-bootstrap';
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default () => {
   const dispatch = useDispatch();
   const expenses = useSelector(state => state.expensesReducer.expenses);
@@ -23,7 +24,7 @@ const ListRow = ({ expense }) => {
     <div>
       <Row>
         <Col xs={5}>{expense.description}</Col>
-        <Col xs={5} className="d-flex">{expense.amount}</Col>
+        <Col xs={5} className="d-flex">${expense.amount}</Col>
         <Col xs={2} className="d-flex">
           <Button style={{ display: 'block', width: '100%' }} variant="warning">Edit</Button>
         </Col>

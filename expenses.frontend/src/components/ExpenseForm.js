@@ -1,5 +1,7 @@
 import { React, useState, useEffect } from 'react';
 import { Form, Row, Col, Button } from 'react-bootstrap';
+import { NewExpense } from '../services/expenses';
+import { useDispatch } from 'react-redux';
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default () => {
@@ -13,13 +15,14 @@ export default () => {
   const [amount, setAmount] = useState(0);
   const [description, setDescription] = useState(descriptions[0]);
   const [isNewExpense, setIsNewExpense] = useState(true);
+  const dispatch = useDispatch();
 
   return (
     <Form
       onSubmit={(event) => {
         event.preventDefault();
         if (isNewExpense) {
-          // create a new expense
+          NewExpense(dispatch, {description: description, amount: amount});
         } else {
           // edit expense
         }
