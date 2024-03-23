@@ -4,7 +4,7 @@ import { NewExpense } from '../services/expenses';
 import { useDispatch } from 'react-redux';
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default () => {
+export default ({ expense, setIsEditing }) => {
   const descriptions = [
     'Groceries',
     'Credit Card',
@@ -17,14 +17,23 @@ export default () => {
   const [isNewExpense, setIsNewExpense] = useState(true);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    if (expense !== undefined) {
+      setIsNewExpense(false);
+      setAmount(expense.amount);
+    } else {
+      setIsNewExpense(true);
+    }
+  }, [expense]);
+
   return (
     <Form
       onSubmit={(event) => {
         event.preventDefault();
         if (isNewExpense) {
-          NewExpense(dispatch, {description: description, amount: amount});
+          NewExpense(dispatch, { description: description, amount: amount });
         } else {
-          // edit expense
+          setIsEditing(false);
         }
       }}
     >
@@ -52,16 +61,35 @@ export default () => {
         <Col xs={2} style={{ display: 'flex', alignItems: 'flex-end' }}>
           <div style={{ width: '100%' }}>
             {isNewExpense ? (
-              <Button variant="primary" type="submit" style={{ display: 'block', width: '100%' }}>
+              <Button
+                variant="primary"
+                type="submit"
+                style={{ display: 'block', width: '100%' }}
+              >
                 Add
               </Button>
             ) : (
               <div>
-                <Button variant="danger" style={{ display: 'block', width: '100%' }}>Delete</Button>
-                <Button variant="success" type="submit" style={{ display: 'block', width: '100%' }}>
+                <Button
+                  variant="danger"
+                  style={{ display: 'block', width: '100%' }}
+                >
+                  Delete
+                </Button>
+                <Button
+                  variant="success"
+                  type="submit"
+                  style={{ display: 'block', width: '100%' }}
+                >
                   Save
                 </Button>
-                <Button variant="default" style={{ display: 'block', width: '100%' }}>Cancel</Button>
+                <Button
+                  variant="default"
+                  style={{ display: 'block', width: '100%' }}
+                  onClick={() => setIsEditing(false)}
+                >
+                  Cancel
+                </Button>
               </div>
             )}
           </div>
